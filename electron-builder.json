@@ -1,0 +1,36 @@
+{
+  "productName": "fcy",
+  "appId": "Personal.DesktopApp.Startkit.1.0.0",
+  "copyright": "Copyright © 2018 ${author}",
+  "directories": {
+    "output": "build"//打包后的输出目录
+  },
+  "asar": true,
+  "artifactName": "${productName}-${version}.${ext}",
+  "compression": "maximum",
+  "files": [
+	"dist/fcy/**/*",
+	"./index.js",
+	"./public/*"
+  ],
+  "win": {
+    "icon": "./public/favicon.ico",
+    "target": "nsis",
+    "legalTrademarks": "Eyas Personal"
+  },
+  "nsis": {
+    "allowToChangeInstallationDirectory": true,
+    "oneClick": false,//一键安装
+	"perMachine":false,//是否开启安装时廯限制
+	"installerIcon": "./public/install.ico",//安装图标
+	"uninstallerIcon": "./public/uninstall.ico",//卸载图标
+	"createDesktopShortcut": true,//创建桌面图标
+	"createStartMenuShortcut": true,//创建开始菜单图标
+	"shortcutName":"墨舟教师端",//图标名称
+    "menuCategory": true,
+    "allowElevation": true
+  },
+  "electronDownload": {
+    "mirror": "http://npm.taobao.org/mirrors/electron/"
+  }
+}
