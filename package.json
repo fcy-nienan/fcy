@@ -1,18 +1,20 @@
 {
-  "name": "fcy",
-  "version": "0.0.0",
+  "name": "fcyName",
+  "productName": "fcyProductName",
+  "description": "Application for electron tutorials",
+  "version": "1.1.1",
   "author": "fcy",
+  "main": "index.js",
   "license": "ISC",
-  "main":"index.js",
   "scripts": {
-    "ng": "ng",
     "start": "electron .",
     "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "pack": "electron-packager . fcy --win --out ../fcy --arch=x64 --app-version=0.0.1 --electron-version=2.0.0 --overwrite",
-    "builder": "electron-builder --win --x64"
+    "pack": "electron-packager . fcy --win --out green-release --arch=x64 --app-version=0.0.1 --electron-version=2.0.0 --overwrite --icon=favicon.ico",
+    "pro-pack": "node electron-pack.js",
+    "installer": "node installers/windows/createinstaller.js",
+    "wix-msi": "node build_installer.js",
+    "windows-installers": "electron-installer-windows --src green-release/fcyName-win32-x64/ --dest dist/installers/",
+    "app-installers": "electron-windows-store --input-directory green-release/fcyName-win32-x64  --output-directory dist/app-installers --package-version 1.0.0.0 --package-name myelectronapp"
   },
   "private": true,
   "dependencies": {
@@ -24,18 +26,30 @@
     "@angular/platform-browser": "~10.0.6",
     "@angular/platform-browser-dynamic": "~10.0.6",
     "@angular/router": "~10.0.6",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "ejs": "~2.6.1",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "ng-zorro-antd": "^8.4.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
+    "update-electron-app": "^1.5.0",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.5",
     "@angular/cli": "~10.0.5",
     "@angular/compiler-cli": "~10.0.6",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "ejs": "^3.1.5",
+    "electron": "^9.2.1",
+    "electron-packager": "^15.1.0",
+    "electron-winstaller": "^4.0.1",
+    "electron-wix-msi": "^3.0.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
@@ -46,7 +60,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.9.5",
-    "electron": "^9.2.1"
+    "typescript": "~3.9.5"
   }
 }

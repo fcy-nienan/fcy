@@ -1,13 +1,35 @@
+const Path = require('path');
+require('update-electron-app')({
+  repo: 'github-fcy-nienan/fcy',
+  updateInterval: '5 minutes',
+})
+
 const {app,Menu,BrowserWindow} = require('electron')
+const runServer = require('./webserver')
+
+// const setupEvents = require('./installers/setupEvents')
+// if (setupEvents.handleSquirrelEvent()) {
+//   // squirrel event handled and app will exit in 1000ms, so don't do anything else
+//   return;
+// }
 
 let mainWindow
+runServer();
+
+
+
 function createWindow () {
     Menu.setApplicationMenu(null);
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({
+    icon:Path.join(__dirname,'favicon.png'),
+    webPreferences: {
+      webSecurity: false
+    }
+  });
 
-  mainWindow.loadFile('index.html')
 
-  // mainWindow.webContents.openDevTools()
+  mainWindow.loadURL('http://localhost:8081/')
+  mainWindow.webContents.openDevTools()
 
 mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store window
@@ -16,7 +38,7 @@ mainWindow.on('closed', () => {
     win = null;
   });
 }
- app.allowRendererProcessReuse = true;
+app.allowRendererProcessReuse = true;
 app.on('ready', createWindow)
 
 app.on('window-all-closed', function () {

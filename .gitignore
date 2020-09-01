@@ -1,5 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
-
+/green-release
+/windows_installer
+/dist
 # compiled output
 /dist
 /tmp
