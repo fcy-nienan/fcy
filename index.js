@@ -29,7 +29,7 @@ function createWindow () {
 
 
   mainWindow.loadURL('http://localhost:8081/')
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 
 mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store window
